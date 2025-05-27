@@ -1,66 +1,144 @@
-# Compiler-Project
+# Gehu Programming Language Compiler
 
-This repository contains a compiler designed in **C** as part of the **Compiler Design course** at **GEHU Bhimtal**, under the guidance of **Devesh Pandey Sir**.
+Gehu is a modern programming language designed for scientific and engineering computations, with built-in support for units, pattern matching, and concurrency.
 
-The compiler parses input files according to specified language rules. If the input is syntactically and semantically correct, the compiler generates corresponding **assembly-level code**. Test cases are provided in the `_Compiler/testcases_` directory.
+## Features
 
-> ⚠️ The compiler is compatible with **GCC 5.4.0** and has been tested on **Ubuntu 16.04**.
+- Strong type system with unit support
+- Pattern matching
+- Pipeline operator for functional programming
+- Built-in concurrency primitives
+- LLVM-based code generation
 
----
+## Building
 
-## 🛠️ How to Build the Compiler
+### Prerequisites
 
-1. Navigate to the compiler directory:
+- CMake 3.10 or higher
+- C++17 compatible compiler
+- LLVM 10.0 or higher
+- Clang (for compiling generated LLVM IR)
 
-   ```bash
-   cd Compiler
-   ```
-2. Build the executable:
+### Build Steps
 
-   ```bash
-   make
-   ```
-3. This will create an executable file named `compiler`.
+1. Create a build directory:
+```bash
+mkdir build
+cd build
+```
 
----
+2. Configure with CMake:
+```bash
+cmake ..
+```
 
-## ▶️ How to Run the Compiler on a Test Case
+3. Build the project:
+```bash
+make
+```
 
-1. Ensure you are in the `Compiler/` directory.
-2. Run the compiler:
+## Usage
 
-   ```bash
-   ./compiler <RELATIVE_PATH_TO_TESTCASE_FILE> <NAME_OF_ASM_FILE>
-   ```
+### Compiling a Gehu Program
 
-   Example:
+```bash
+./gehu input.gehu
+```
 
-   ```bash
-   ./compiler testcases/testcase0.txt code.asm
-   ```
-3. A menu with 11 options will appear. Choose an option to test a specific compiler phase.
-4. To generate assembly-level code, select option `10`.
-5. Use option `0` to exit the menu.
-   ⚠️ Pressing `Ctrl+C` exits without saving the `.asm` output.
-6. To compile and run the generated assembly:
+This will generate an executable named `output` in the current directory.
 
-   ```bash
-   nasm -felf64 code.asm && gcc code.o && ./a.out
-   ```
+### Running Tests
 
----
+```bash
+cd build
+make test
+```
 
-## 🔁 Compilation Stages (Triggered via Option 10)
+## Language Features
 
-| Stage                 | Description                                                                                                                       |
-| --------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| **Lexical Analysis**  | Breaks the source into tokens as per language specifications.                                                                     |
-| **Syntax Analysis**   | Constructs a Parse Tree from tokens. Errors here prevent further processing.                                                      |
-| **Semantic Analysis** | Builds an AST, performs type checking, and populates the Symbol Table. Errors here prevent code generation.                       |
-| **Code Generation**   | Converts the AST to assembly code. ⚠️ Code generation supports only programs with a single `main` function using `int` variables. |
+### Units
 
----
+```gehu
+let distance = 5 km;
+let time = 30 min;
+let speed = distance / time;  // Automatically handles unit conversion
+```
 
-## 👨‍💼 Contributors
+### Pipeline Operator
 
-* [Navneet Pathak](https://github.com/navneetpathak1) and Team
+```gehu
+let result = 100 km |> calculate_speed(_, 2 min);
+```
+
+### Concurrency
+
+```gehu
+let task1 = spawn {
+    let x = 10 km;
+    show x;
+};
+
+wait task1;
+```
+
+## Project Structure
+
+- `include/` - Header files
+  - `lexer.hpp` - Lexical analyzer
+  - `parser.hpp` - Parser
+  - `semantic_analyzer.hpp` - Semantic analyzer
+  - `code_generator.hpp` - LLVM code generator
+- `source/` - Source files
+  - `main.cpp` - Main compiler driver
+  - `lexer/` - Lexical analysis components
+    - `lexer.hpp` - Lexer interface
+    - `lexer.cpp` - Lexer implementation
+  - `parser/` - Parsing components
+    - `ast.hpp` - Abstract Syntax Tree definitions
+    - `ast.cpp` - AST implementation
+  - `semantic/` - Semantic analysis components
+    - `semantic_visitor.hpp` - Semantic visitor interface
+    - `semantic_visitor.cpp` - Semantic visitor implementation
+    - `type.hpp` - Type definitions
+  - `codegen/` - Code generation components
+    - `codegen_visitor.hpp` - Code generation visitor interface
+    - `codegen_visitor.cpp` - Code generation visitor implementation
+- `test/` - Test files
+  - `test.cpp` - Unit tests
+  - `test.gehu` - Sample Gehu program
+
+## Grammar of the Language
+
+The grammar of the Gehu language is defined by the tokens and parsing rules in `lexer.cpp` and `parser.cpp`. Here's a simplified overview:
+
+- **Tokens:**
+  - `Let`: Keyword for variable declaration.
+  - `Identifier`: Variable names.
+  - `Assign`: Assignment operator (`=`).
+  - `String`: String literals enclosed in double quotes.
+  - `Show`: Keyword for displaying variables.
+  - `Semicolon`: Statement terminator (`;`).
+  - `Eof`: End of file.
+
+- **Statements:**
+  - **Let Statement:**  
+    ```
+    let <identifier> = <string> ;
+    ```
+    Declares a variable and assigns a string value to it.
+
+  - **Show Statement:**  
+    ```
+    show <identifier> ;
+    ```
+    Displays the value of a variable.
+
+- **Example:**
+  ```
+  let name = "John";
+  show name;
+  ```
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details. 

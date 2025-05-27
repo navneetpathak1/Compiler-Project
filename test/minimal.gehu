@@ -1,0 +1,5 @@
+// Minimal test for Gehu language
+let a = 2;
+let b = 3;
+let sum = a + b;
+show sum; 

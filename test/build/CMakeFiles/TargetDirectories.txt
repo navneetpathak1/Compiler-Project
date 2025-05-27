@@ -1,0 +1,3 @@
+/home/navneet/project/gehu_project/test/build/CMakeFiles/gehu_test.dir
+/home/navneet/project/gehu_project/test/build/CMakeFiles/edit_cache.dir
+/home/navneet/project/gehu_project/test/build/CMakeFiles/rebuild_cache.dir

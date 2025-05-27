@@ -1,0 +1,13 @@
+// examples Gehu language
+let a = 10;
+let b = 5;
+let sum = a + b;
+let diff = a - b;
+show sum;
+show diff;
+
+func double(x: number): number {
+    return x * 2;
+}
+let result = double(a);
+show result; 

@@ -1,0 +1,6 @@
+let name = "Navneet Pathak";
+let skills = "C++, LLVM, Compiler Design";
+let education = "B.Tech, Computer Science";
+show name;
+show skills;
+show education;

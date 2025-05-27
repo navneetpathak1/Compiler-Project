@@ -1,0 +1,97 @@
+// Test file for Gehu language features
+
+// Basic arithmetic and unit conversion
+let distance = 5 km;
+let time = 30 min;
+let speed = distance / time;  // Should be in km/min
+
+// Function definition with units
+func calculate_speed(d: km, t: min): km/min {
+    return d / t;
+}
+
+// Pattern matching
+func classify_speed(s: km/h): string {
+    return match s {
+        0 => "stopped";
+        1..30 => "slow";
+        31..60 => "medium";
+        _ => "fast";
+    };
+}
+
+// Pipeline operator
+let result = 100 km |> calculate_speed(_, 2 min);
+
+// Concurrency
+let task1 = spawn {
+    let x = 10 km;
+    show x;
+};
+
+let task2 = spawn {
+    let y = 20 km;
+    show y;
+};
+
+wait task1;
+wait task2;
+
+// Show results
+show speed;
+show result;
+show classify_speed(45 km/h);
+
+// Additional test cases
+
+// Unit conversions
+let distance_m = 5000 m;
+let distance_km = distance_m;  // Should convert to km
+let distance_mi = distance_km;  // Should convert to miles
+
+// Complex calculations
+func calculate_energy(m: kg, v: m/s): J {
+    return 0.5 * m * v * v;
+}
+
+let mass = 10 kg;
+let velocity = 20 m/s;
+let energy = calculate_energy(mass, velocity);
+
+// Nested pattern matching
+func analyze_motion(v: m/s, a: m/s²): string {
+    return match (v, a) {
+        (0, 0) => "at rest";
+        (_, 0) => "constant velocity";
+        (_, _) => "accelerating";
+    };
+}
+
+// Pipeline with multiple steps
+let final_speed = 50 km/h 
+    |> calculate_speed(_, 1 h)
+    |> classify_speed;
+
+// Error handling
+func safe_divide(a: number, b: number): number {
+    return match b {
+        0 => 0;  // Handle division by zero
+        _ => a / b;
+    };
+}
+
+// Complex unit expressions
+let acceleration = (20 m/s) / (5 s);  // Should be m/s²
+let force = 10 kg * acceleration;  // Should be N
+
+// Show all results
+show distance_m;
+show distance_km;
+show distance_mi;
+show energy;
+show analyze_motion(10 m/s, 2 m/s²);
+show final_speed;
+show safe_divide(10, 2);
+show safe_divide(10, 0);
+show acceleration;
+show force; 

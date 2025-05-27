@@ -1,0 +1,9 @@
+let distance = 5 km;
+let time = 30 min;
+
+func speed(d: unit, t: unit): unit {
+    d / t
+}
+
+let result = speed(distance, time);
+show(result); 

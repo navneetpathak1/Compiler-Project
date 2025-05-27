@@ -1,0 +1,145 @@
+// Gehu Standard Library
+
+// Math Utilities
+func abs(x: number): number {
+    return match x {
+        x < 0 => -x;
+        _ => x;
+    };
+}
+
+func min(a: number, b: number): number {
+    return match a < b {
+        true => a;
+        _ => b;
+    };
+}
+
+func max(a: number, b: number): number {
+    return match a > b {
+        true => a;
+        _ => b;
+    };
+}
+
+func pow(base: number, exponent: number): number {
+    return match exponent {
+        0 => 1;
+        1 => base;
+        _ => base * pow(base, exponent - 1);
+    };
+}
+
+// Unit Conversion Utilities
+func to_meters(distance: km): m {
+    return distance * 1000;
+}
+
+func to_kilometers(distance: m): km {
+    return distance / 1000;
+}
+
+func to_miles(distance: km): mi {
+    return distance * 0.621371;
+}
+
+func to_seconds(time: min): s {
+    return time * 60;
+}
+
+func to_minutes(time: s): min {
+    return time / 60;
+}
+
+func to_hours(time: min): h {
+    return time / 60;
+}
+
+// Speed Conversions
+func to_mps(speed: km/h): m/s {
+    return speed * (1000.0 / 3600.0);
+}
+
+func to_kmph(speed: m/s): km/h {
+    return speed * (3600.0 / 1000.0);
+}
+
+// String Utilities
+func length(str: string): number {
+    return match str {
+        "" => 0;
+        _ => 1 + length(str[1:]);
+    };
+}
+
+func concat(a: string, b: string): string {
+    return a + b;
+}
+
+func substring(str: string, start: number, length: number): string {
+    return match (start, length) {
+        (0, 0) => "";
+        (0, _) => str[0] + substring(str[1:], 0, length - 1);
+        (_, _) => substring(str[1:], start - 1, length);
+    };
+}
+
+// List Utilities
+func map(f: func(number): number, list: number[]): number[] {
+    return match list {
+        [] => [];
+        [head, ...tail] => [f(head), ...map(f, tail)];
+    };
+}
+
+func filter(pred: func(number): boolean, list: number[]): number[] {
+    return match list {
+        [] => [];
+        [head, ...tail] => match pred(head) {
+            true => [head, ...filter(pred, tail)];
+            _ => filter(pred, tail);
+        };
+    };
+}
+
+func reduce(f: func(number, number): number, init: number, list: number[]): number {
+    return match list {
+        [] => init;
+        [head, ...tail] => reduce(f, f(init, head), tail);
+    };
+}
+
+// Error Handling Utilities
+func try_catch(try_block: func(): any, catch_block: func(string): any): any {
+    return match try_block() {
+        result => result;
+        error => catch_block(error);
+    };
+}
+
+// Debug Utilities
+func debug_print(value: any): void {
+    show "DEBUG: " + value;
+}
+
+// Type Checking Utilities
+func is_number(value: any): boolean {
+    return match value {
+        number => true;
+        _ => false;
+    };
+}
+
+func is_string(value: any): boolean {
+    return match value {
+        string => true;
+        _ => false;
+    };
+}
+
+func is_unit(value: any): boolean {
+    return match value {
+        km | m | mi | min | s | h | kg | J | N | m/s | m/s² | km/h | km/min => true;
+        _ => false;
+    };
+} 

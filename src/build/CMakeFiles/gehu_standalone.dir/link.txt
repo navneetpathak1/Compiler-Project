@@ -1,0 +1,1 @@
+/usr/bin/c++  -fexceptions CMakeFiles/gehu_standalone.dir/main.cpp.o CMakeFiles/gehu_standalone.dir/lexer.cpp.o CMakeFiles/gehu_standalone.dir/parser.cpp.o CMakeFiles/gehu_standalone.dir/codegen.cpp.o -o gehu_standalone 

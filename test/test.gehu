@@ -1,0 +1,9 @@
+// Test program in Gehu language
+let x = 42;
+
+func add(a: number, b: number): number {
+    return a + b;
+}
+
+let result = add(x, 10);
+show result; 

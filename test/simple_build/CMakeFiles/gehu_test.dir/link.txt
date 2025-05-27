@@ -1,0 +1,1 @@
+/usr/bin/c++ -std=c++17 -rdynamic CMakeFiles/gehu_test.dir/test.o -o gehu_test  -lgehu_lib -lpthread -lstdc++ 
