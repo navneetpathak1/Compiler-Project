@@ -1,0 +1,18 @@
+function add [input parameter list [int a, int b]] [output parameter list [int sum]]
+  type int: result;
+  result := a + b;
+  sum := result;
+  return;
+end function
+
+function main [input parameter list []] [output parameter list []]
+  type int: x;
+  type int: y;
+  type int: z;
+
+  x := 5;
+  y := 10;
+  call add with parameters [x, y] and return into [z];
+  write(z);
+  return;
+end function
