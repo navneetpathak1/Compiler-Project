@@ -1,144 +1,140 @@
-# Gehu Programming Language Compiler
+Gehu Programming Language Compiler
 
-Gehu is a modern programming language designed for scientific and engineering computations, with built-in support for units, pattern matching, and concurrency.
+Gehu is a modern, statically-typed programming language designed for scientific and engineering applications. It features a powerful type system with native unit support, expressive syntax for pattern matching, a pipeline operator for functional composition, and built-in primitives for concurrent programming. Gehu compiles to efficient machine code using LLVM.
 
-## Features
+⸻
 
-- Strong type system with unit support
-- Pattern matching
-- Pipeline operator for functional programming
-- Built-in concurrency primitives
-- LLVM-based code generation
+🚀 Features
+	•	Strong Type System with Units
+Seamless integration of physical units into type checking and arithmetic.
+	•	Pattern Matching
+Concise and readable syntax for conditional logic based on structural patterns.
+	•	Pipeline Operator (|>)
+Functional programming support for cleaner and more composable code.
+	•	Concurrency Primitives
+Native support for lightweight, concurrent tasks.
+	•	LLVM Backend
+High-performance code generation using the LLVM toolchain.
 
-## Building
+⸻
 
-### Prerequisites
+🛠️ Building the Compiler
 
-- CMake 3.10 or higher
-- C++17 compatible compiler
-- LLVM 10.0 or higher
-- Clang (for compiling generated LLVM IR)
+Prerequisites
 
-### Build Steps
+To build Gehu, ensure you have the following tools installed:
+	•	CMake ≥ 3.10
+	•	C++ Compiler with C++17 support
+	•	LLVM ≥ 10.0
+	•	Clang (used to compile the generated LLVM IR)
 
-1. Create a build directory:
-```bash
+🛠️ Building the Compiler
+
+Prerequisites
+
+To build Gehu, ensure you have the following tools installed:
+	•	CMake ≥ 3.10
+	•	C++ Compiler with C++17 support
+	•	LLVM ≥ 10.0
+	•	Clang (used to compile the generated LLVM IR)
+
+Build Instructions
+# Step 1: Create a build directory
 mkdir build
 cd build
-```
 
-2. Configure with CMake:
-```bash
+# Step 2: Configure the project with CMake
 cmake ..
-```
 
-3. Build the project:
-```bash
+# Step 3: Compile the source code
 make
-```
 
-## Usage
+After a successful build, the gehu compiler binary will be available in the build directory.
 
-### Compiling a Gehu Program
 
-```bash
-./gehu input.gehu
-```
+📦 Usage
 
-This will generate an executable named `output` in the current directory.
+Compiling a Gehu Program
+./gehu path/to/input.gehu
 
-### Running Tests
+This will compile the input file and generate an executable named output in the current directory.
 
-```bash
+Running Tests
+
+To execute the test suite:
 cd build
 make test
-```
 
-## Language Features
+🧠 Language Features
 
-### Units
+Units
 
-```gehu
+Gehu natively understands physical units and handles conversions automatically.
 let distance = 5 km;
 let time = 30 min;
-let speed = distance / time;  // Automatically handles unit conversion
-```
+let speed = distance / time;  // Units are managed automatically
 
-### Pipeline Operator
+Pipeline Operator
 
-```gehu
+Used for function chaining and improving code readability:
 let result = 100 km |> calculate_speed(_, 2 min);
-```
 
-### Concurrency
+Concurrency
 
-```gehu
+Gehu supports lightweight concurrency with spawn and wait:
 let task1 = spawn {
     let x = 10 km;
     show x;
 };
 
 wait task1;
-```
 
-## Project Structure
+.
+├── include/                  # Header files
+│   ├── lexer.hpp
+│   ├── parser.hpp
+│   ├── semantic_analyzer.hpp
+│   └── code_generator.hpp
+├── source/                   # Source code
+│   ├── main.cpp              # Compiler driver
+│   ├── lexer/                # Lexical analysis
+│   │   ├── lexer.hpp
+│   │   └── lexer.cpp
+│   ├── parser/               # Parsing
+│   │   ├── ast.hpp
+│   │   └── ast.cpp
+│   ├── semantic/             # Semantic analysis
+│   │   ├── semantic_visitor.hpp
+│   │   ├── semantic_visitor.cpp
+│   │   └── type.hpp
+│   └── codegen/              # Code generation
+│       ├── codegen_visitor.hpp
+│       └── codegen_visitor.cpp
+├── test/                     # Unit and functional tests
+│   ├── test.cpp
+│   └── test.gehu
+└── CMakeLists.txt            # CMake configuration
 
-- `include/` - Header files
-  - `lexer.hpp` - Lexical analyzer
-  - `parser.hpp` - Parser
-  - `semantic_analyzer.hpp` - Semantic analyzer
-  - `code_generator.hpp` - LLVM code generator
-- `source/` - Source files
-  - `main.cpp` - Main compiler driver
-  - `lexer/` - Lexical analysis components
-    - `lexer.hpp` - Lexer interface
-    - `lexer.cpp` - Lexer implementation
-  - `parser/` - Parsing components
-    - `ast.hpp` - Abstract Syntax Tree definitions
-    - `ast.cpp` - AST implementation
-  - `semantic/` - Semantic analysis components
-    - `semantic_visitor.hpp` - Semantic visitor interface
-    - `semantic_visitor.cpp` - Semantic visitor implementation
-    - `type.hpp` - Type definitions
-  - `codegen/` - Code generation components
-    - `codegen_visitor.hpp` - Code generation visitor interface
-    - `codegen_visitor.cpp` - Code generation visitor implementation
-- `test/` - Test files
-  - `test.cpp` - Unit tests
-  - `test.gehu` - Sample Gehu program
+📚 Language Grammar
 
-## Grammar of the Language
+The Gehu language is defined by its token set and parsing rules located in lexer.cpp and parser.cpp.
 
-The grammar of the Gehu language is defined by the tokens and parsing rules in `lexer.cpp` and `parser.cpp`. Here's a simplified overview:
+Tokens
+	•	let – variable declaration keyword
+	•	identifier – variable names
+	•	= – assignment operator
+	•	string – double-quoted string literals
+	•	show – output command
+	•	; – statement terminator
+	•	eof – end of file
 
-- **Tokens:**
-  - `Let`: Keyword for variable declaration.
-  - `Identifier`: Variable names.
-  - `Assign`: Assignment operator (`=`).
-  - `String`: String literals enclosed in double quotes.
-  - `Show`: Keyword for displaying variables.
-  - `Semicolon`: Statement terminator (`;`).
-  - `Eof`: End of file.
+Statement Forms
+	•	Variable Declaration
+        let <identifier> = <string> ;
+	•	Output Statement
+        let name = "John";
+        show name;
 
-- **Statements:**
-  - **Let Statement:**  
-    ```
-    let <identifier> = <string> ;
-    ```
-    Declares a variable and assigns a string value to it.
+📄 License
 
-  - **Show Statement:**  
-    ```
-    show <identifier> ;
-    ```
-    Displays the value of a variable.
-
-- **Example:**
-  ```
-  let name = "John";
-  show name;
-  ```
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details. 
+This project is licensed under the MIT License. You are free to use, modify, and distribute this software with proper attribution.
