@@ -4,7 +4,7 @@
 
 Gehu is a cutting-edge programming language specifically crafted for scientific computing, engineering applications, and mathematical modeling. It combines the performance of compiled languages with the expressiveness needed for complex computational tasks, featuring built-in support for physical units, advanced pattern matching, and native concurrency primitives.
 
-### Why Gehu?
+### Why Gehu??
 
 - **Unit-Aware Computing**: Built-in support for physical units prevents dimensional analysis errors
 - **Performance-First**: LLVM-based compilation ensures optimal performance
