@@ -249,3 +249,6 @@ sudo apt install clang-format  # Ubuntu/Debian
 - 🧪 **Testing**: Expand test coverage
 - 🌟 **Features**: Implement new language features
 
+## 👨‍💻 Authors
+
+Developed by [Navneet Pathak](https://github.com/navneetpathak1) and team.
