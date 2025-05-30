@@ -212,10 +212,6 @@ gehu/
 
 
 
-
-
-
-
 ## 🤝 Contributing
 
 We welcome contributions to the Gehu programming language! Here's how you can help:
