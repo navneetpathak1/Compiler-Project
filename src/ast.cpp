@@ -1,0 +1,1 @@
+// Remove all accept method definitions for AST nodes, as they are now defined inline in ast.hpp. 

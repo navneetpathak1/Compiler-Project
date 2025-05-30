@@ -1,0 +1,11 @@
+let a = 10;
+let b = 6;
+let sum = a + b;
+let diff = a - b;
+let product = a * b;
+let quotient = a / b;
+
+show sum;     // Should print 16
+show diff;    // Should print 4
+show product; // Should print 60
+show quotient; // Should print 1 

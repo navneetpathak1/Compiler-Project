@@ -1,0 +1,9 @@
+let name = "Navneet Pathak";
+let title = "Software Engineer";
+let skills = "C++, JavaScript, LLVM";
+let experience = "5 years of experience in compiler development";
+
+show name;
+show title;
+show skills;
+show experience; 

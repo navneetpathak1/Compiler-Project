@@ -1,0 +1,7 @@
+/home/navneet/project/Gehu_language/build/CMakeFiles/intrinsics_gen.dir
+/home/navneet/project/Gehu_language/build/CMakeFiles/omp_gen.dir
+/home/navneet/project/Gehu_language/build/CMakeFiles/acc_gen.dir
+/home/navneet/project/Gehu_language/build/CMakeFiles/RISCVTargetParserTableGen.dir
+/home/navneet/project/Gehu_language/build/CMakeFiles/gehu.dir
+/home/navneet/project/Gehu_language/build/CMakeFiles/edit_cache.dir
+/home/navneet/project/Gehu_language/build/CMakeFiles/rebuild_cache.dir
